@@ -19,3 +19,19 @@ BEGIN
 	
 		RETURN @result
 END
+
+GO
+-- HOW TO USE
+SELECT [FirstName],
+	[dbo].[ufn_GetSalaryLevel](Salary) AS [LAVEL SALARY]
+FROM [Employees]
+
+go
+
+CREATE OR ALTER PROCEDURE usp_EmployeesBySalaryLevel (@level VARCHAR(10))
+AS
+BEGIN
+SELECT [FirstName],[LastName]
+FROM [Employees]
+WHERE [dbo].[ufn_GetSalaryLevel](Salary) = @level 
+END
